@@ -113,6 +113,8 @@ def required_sample_size(
     z_a = norm.ppf(1 - alpha / 2)
     z_b = norm.ppf(power)
     p_bar = (p1 + p2) / 2
-    num = (z_a * np.sqrt(2 * p_bar * (1 - p_bar)) + z_b * np.sqrt(p1 * (1 - p1) + p2 * (1 - p2))) ** 2
+    term_a = z_a * np.sqrt(2 * p_bar * (1 - p_bar))
+    term_b = z_b * np.sqrt(p1 * (1 - p1) + p2 * (1 - p2))
+    num = (term_a + term_b) ** 2
     den = (p2 - p1) ** 2
     return int(np.ceil(num / den))

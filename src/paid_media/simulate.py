@@ -166,7 +166,9 @@ def simulate_user_paths(
             w = true_weights.get(ch, 0.0)
             expo += w * (1.0 if interaction == "click" else 0.4)
             path.append((ch, interaction))
-        base = -2.8  # -> ~6% conversion rate at typical exposure
+        # logistic intercept: sigmoid(-2.8 + avg_expo) ≈ 6% conversion rate,
+        # realistic for a SaaS trial with multi-touch journeys.
+        base = -2.8
         p_conv = 1.0 / (1.0 + np.exp(-(base + expo)))
         converters[u] = rng.random() < p_conv
         paths.append(path)
@@ -242,7 +244,8 @@ def simulate_mmm_panel(
     spend = pd.DataFrame(index=weeks)
     spend["sem"] = rng.uniform(80_000, 180_000, n_weeks)
     spend["display"] = rng.uniform(50_000, 150_000, n_weeks) * (1 + 0.4 * np.sin(weeks / 6))
-    spend["video"] = (rng.random(n_weeks) < 0.4).astype(float) * rng.uniform(100_000, 400_000, n_weeks)
+    video_mask = (rng.random(n_weeks) < 0.4).astype(float)
+    spend["video"] = video_mask * rng.uniform(100_000, 400_000, n_weeks)
     spend["brand"] = rng.uniform(30_000, 90_000, n_weeks)
     spend["email"] = rng.uniform(5_000, 15_000, n_weeks)
 

@@ -35,4 +35,6 @@ def test_ios_has_lower_events_per_journey():
     res = stitch_sessions(log.events)
     tab = ios_attribution_loss(res)
     if "ios_app" in tab.index and "web_desktop" in tab.index:
-        assert tab.loc["ios_app", "events_per_journey"] < tab.loc["web_desktop", "events_per_journey"]
+        ios = tab.loc["ios_app", "events_per_journey"]
+        desk = tab.loc["web_desktop", "events_per_journey"]
+        assert ios < desk

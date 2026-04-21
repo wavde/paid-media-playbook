@@ -47,9 +47,7 @@ def stitch_sessions(
     df["journey_id"] = df["user_id"].str.extract(r"^(u_\d+)")[0].fillna(df["user_id"])
     gap = df.groupby("user_id")["event_ts"].diff().fillna(float("inf"))
     new_session = (gap > session_gap_seconds).astype(int)
-    df["session_id"] = df.groupby("user_id")[new_session.name if new_session.name else "event_ts"]\
-        .cumcount() * 0  # placeholder to allocate column
-    df["session_id"] = (df["user_id"] + "|" + new_session.groupby(df["user_id"]).cumsum().astype(str))
+    df["session_id"] = df["user_id"] + "|" + new_session.groupby(df["user_id"]).cumsum().astype(str)
 
     journey_user_counts = df.groupby("journey_id")["user_id"].nunique()
     cookie_loss_share = float((journey_user_counts > 1).mean()) if len(journey_user_counts) else 0.0

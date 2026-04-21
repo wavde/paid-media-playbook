@@ -57,7 +57,10 @@ def main() -> None:
     print()
 
     print("How much does last-touch over-credit / under-credit each channel (pp)?")
-    print(score_against_truth(methods["Last-touch"], sim.channel_true_contribution).to_string(index=False))
+    score = score_against_truth(
+        methods["Last-touch"], sim.channel_true_contribution,
+    )
+    print(score.to_string(index=False))
 
 
 if __name__ == "__main__":

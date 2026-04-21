@@ -3,7 +3,9 @@
 A lightweight MAP point estimate for a channel-level adstock + Hill saturation
 regression:
 
-$$y_t = \\alpha + \\beta_t \\text{trend}_t + \\gamma_t \\text{season}_t + \\sum_c \\beta_c\\, \\text{Hill}(\\text{Adstock}(x_{c,t}; \\lambda_c); k_c, s_c) + \\varepsilon_t.$$
+$$y_t = \\alpha + \\beta_t \\text{trend}_t + \\gamma_t \\text{season}_t
++ \\sum_c \\beta_c\\, \\text{Hill}(\\text{Adstock}(x_{c,t};
+\\lambda_c); k_c, s_c) + \\varepsilon_t.$$
 
 We fit $\\lambda_c$, $k_c$, and $\\beta_c$ per channel by minimising squared
 error under simple priors.  No posterior uncertainty — for that see
