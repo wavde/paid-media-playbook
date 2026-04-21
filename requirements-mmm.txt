@@ -1,0 +1,5 @@
+# Optional: PyMC stack for the Bayesian MMM in case 04.
+# The numpy/scipy MAP reference in the same case runs without these.
+-r requirements.txt
+pymc>=5.10
+arviz>=0.17
