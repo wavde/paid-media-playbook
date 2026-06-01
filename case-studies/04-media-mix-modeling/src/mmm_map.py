@@ -57,19 +57,6 @@ class MMMFit:
             out = out + self.beta[ch] * sat * spend[ch].mean()
         return out
 
-    def roas_curve(self, ch: str, mean_spend: float, n_points: int = 60) -> pd.DataFrame:
-        """Marginal-spend response curve for a channel."""
-        grid = np.linspace(0.2 * mean_spend, 2.5 * mean_spend, n_points)
-        x = np.full(52, grid[0])  # steady-state at each grid point
-        rows = []
-        for s in grid:
-            x = np.full(104, s)
-            adstk = geometric_adstock(x, self.decay[ch])
-            sat = hill_saturation(adstk, self.halfsat[ch], s=1.4)
-            steady = self.beta[ch] * sat[-1] * mean_spend
-            rows.append({"spend": s, "expected_outcome_per_week": steady})
-        return pd.DataFrame(rows)
-
 
 def fit_mmm_map(
     data: pd.DataFrame,

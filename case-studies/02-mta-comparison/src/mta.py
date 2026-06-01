@@ -8,10 +8,10 @@ Implements the five attribution methods that show up on real paid-media teams:
 - Markov-chain removal effect (Anderl et al. 2016)
 - Shapley value attribution (Berman 2018; Dalessandro et al. 2012)
 
-All methods share the same input format: a list of converting users'
-``(channel, interaction)`` touch paths, where ``interaction`` is ``"click"`` or
-``"view"``.  Views are credit-haircut via :mod:`paid_media.credit` before the
-method-specific allocation runs.
+All methods share the same input format: a list of users' ``(channel,
+interaction)`` touch paths, where ``interaction`` is ``"click"`` or ``"view"``.
+The rule-based methods apply the click/view credit weights from
+:mod:`paid_media.credit`; Markov and Shapley use channel sequences/sets only.
 """
 
 from __future__ import annotations

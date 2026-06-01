@@ -8,10 +8,11 @@ incremental conversion rate over an unexposed holdout?*
 ## TL;DR
 
 At a trial-start base rate of **0.5%** and a target relative lift of **+10%**,
-the required per-arm sample is ≈ **325k users** at α=0.05 / 80% power.  At that
-size a +10% truth registers at p ≲ 0.05 with a 95% CI of roughly ±5 pp.  Drop
-the true lift to +5% (half of target) and the test fails to reject at the same
-n: **design power is the binding constraint**, not estimator choice.
+the required per-arm sample is ≈ **328k users** at α=0.05 / 80% power.  On the
+seeded draw, the +10% truth reads out at p=0.0195 with a wide CI; the +5%
+half-lift sensitivity happens to reject even more strongly (p=0.0010) because
+it lands high.  **Design power and pre-declared CIs matter more than a single
+lucky p-value.**
 
 ## Business framing
 

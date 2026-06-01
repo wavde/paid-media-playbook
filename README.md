@@ -46,9 +46,9 @@ which" matrix; it makes the rest of the playbook easier to navigate.
 - **PyMC** for the Bayesian MMM in case 04 (optional — the MAP reference
   implementation runs without it).  Install with:
   `pip install -r requirements-mmm.txt`.
-- **[experiment-toolkit](https://github.com/wavde/experiment-toolkit)** — the
-  sibling PyPI package — for sequential monitoring when a conversion-lift
-  test peeks.
+- Sequential-monitoring examples live in the sibling
+  **[experiment-toolkit](https://github.com/wavde/experiment-toolkit)** project;
+  this repo does not import it as a runtime dependency.
 
 ## How to run
 

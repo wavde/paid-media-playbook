@@ -15,9 +15,6 @@ from typing import Any
 import numpy as np
 import pandas as pd
 
-from paid_media.adstock import geometric_adstock  # noqa: F401 (used in doc)
-from paid_media.saturation import hill_saturation  # noqa: F401
-
 
 @dataclass
 class MMMBayesFit:

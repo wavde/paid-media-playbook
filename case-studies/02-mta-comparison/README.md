@@ -11,12 +11,14 @@ On simulated path data where display and video drive most of the incremental
 conversion but branded search and paid search capture the last click, the
 attribution methods disagree by **20+ percentage points** on display's share.
 Last-touch systematically under-credits upper-funnel display + video.  Markov
-removal and Shapley agree within 2 pp on the ground-truth ranking; both
-reallocate ~15 pp of credit away from last-touch channels.
+removal moves credit back toward display/video and closer to the known truth;
+Shapley is included as a contrast because, at this 10k-user sample size, it
+collapses onto paid-search/direct rather than validating the Markov result.
 
-The business-rule click-vs-view haircut (**clicks 1.0× · views 0.4×**) is
-applied *before* the method-specific rule.  Without it, display's view-through
-count inflates its last-touch share by another 8 pp on this DGP.
+The business-rule click-vs-view weight (**clicks 1.0× · views 0.4×**, a 60%
+view haircut) is applied before the rule-based methods.  Each converting path
+is still renormalized to one conversion of total credit, so the weight changes
+within-path allocation rather than reducing total conversion credit.
 
 ## Business framing
 
@@ -28,16 +30,20 @@ the comparison.
 
 The specific question that shows up in a quarterly planning cycle is:
 *"If we shift 20% of display budget into brand search, what happens?"*  LTA says
-this is costless because display wasn't getting credit anyway.  Markov and
-Shapley — and the geo-lift result in case 01 — say otherwise.
+this is costless because display wasn't getting credit anyway.  Markov — and
+the incrementality framing in cases 01 and 03 — says otherwise; Shapley is shown
+here as a sample-size-sensitive failure mode, not as corroboration.
 
 ## Methods
 
-### Credit weighting (applied first)
+### Credit weighting (rule-based methods)
 
 Each touch is a ``(channel, interaction)`` pair with ``interaction ∈ {click, view}``.
-Views get a **0.4× credit haircut** (clicks 1.0×).  This is the single rule that
-prevents display's raw view count from dominating every downstream method.
+Views get a **0.4× credit weight** (clicks 1.0×), equivalent to a 60% haircut.
+For the rule-based methods below, the touch-rule weights are multiplied by the
+click/view weights and then renormalized so each conversion still contributes
+one total conversion of credit.  Markov and Shapley use channel sequences/sets
+only in this implementation, so they do not apply the interaction-type weight.
 
 ### Rule-based
 
@@ -48,8 +54,10 @@ prevents display's raw view count from dominating every downstream method.
 - **Time-decay.** Exponential weighting in touch index; weight $w_i = 0.5^{(n-1-i)/h}$
   where $h$ is the half-life in touches (default 2).
 
-Each is applied *after* the click/view weighting, so a view-only path yields a
-smaller total of credit than a click-only one.
+Each is applied *after* the click/view weighting.  Because credit is
+renormalized within each converting path, a view-only path still contributes one
+conversion of total credit; the weighting changes which touches inside the path
+receive that credit.
 
 ### Markov-chain removal effect
 

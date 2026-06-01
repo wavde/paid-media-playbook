@@ -6,16 +6,18 @@ view (served ad, no click) is evidence of exposure; a click is evidence of
 intent.  Treating them equally inflates display's apparent contribution.
 
 The default here mirrors the real-world convention used on paid-media teams at
-large tech companies: clicks get full credit, views get a 40% haircut (0.6×).
-The canonical factor in this playbook is **clicks=1.0, views=0.4** — a 60%
-haircut on views — which is deliberately more conservative because:
+large tech companies: clicks get full credit, views get partial credit.  The
+canonical factor in this playbook is **clicks=1.0, views=0.4** — a 60% haircut
+on views — which is deliberately conservative because:
 
 1. View-through conversions have a higher share of organic/direct demand.
 2. Without the haircut, display systematically steals credit from SEM.
 3. It matches the split the author used in production.
 
-The helpers here compute touchpoint weights before they flow into LTA, FTA,
-position-based, time-decay, Markov, or Shapley attributions.
+The helpers here compute touchpoint weights before they flow into the
+rule-based LTA, FTA, position-based, and time-decay attributions.  Each
+conversion is then renormalized to one total conversion of credit, so the
+weights affect within-path allocation rather than total conversion credit.
 """
 
 from __future__ import annotations

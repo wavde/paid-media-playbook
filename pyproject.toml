@@ -1,3 +1,23 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "paid-media-playbook"
+version = "0.1.0"
+description = "Synthetic paid-media measurement case studies and shared utilities."
+requires-python = ">=3.10"
+dependencies = [
+    "numpy>=1.26",
+    "pandas>=2.0",
+    "scipy>=1.11",
+    "scikit-learn>=1.4",
+    "statsmodels>=0.14",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/paid_media"]
+
 [tool.ruff]
 line-length = 100
 target-version = "py310"
