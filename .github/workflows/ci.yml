@@ -33,3 +33,4 @@ jobs:
         run: |
           python case-studies/06-ai-mediated-measurement/src/run.py --smoke
           python case-studies/07-criteo-uplift/src/run.py --smoke
+          python case-studies/08-hillstrom-email-uplift/src/run.py --smoke
