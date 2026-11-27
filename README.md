@@ -27,6 +27,7 @@ segments, or accounts are used.
 | 03 | [Conversion lift / incrementality](case-studies/03-incrementality/) | Ghost-ad matched-market, two-proportion z, Bayesian bootstrap CI, sample-size planning | Complete |
 | 04 | [Media mix modeling](case-studies/04-media-mix-modeling/) | MAP (numpy/scipy) + Bayesian (PyMC) with adstock + Hill saturation | Complete |
 | 05 | [Web attribution deep dive](case-studies/05-web-attribution/) | Session stitching, journey reconciliation, window sensitivity, iOS/ATT loss | Complete |
+| 06 | [Measurement when targeting, creative and pacing are model-driven](case-studies/06-ai-mediated-measurement/) | Ghost-ads vs platform credit, two-cell budget split, divergent delivery, lift-calibrated MMM | Complete |
 
 Each case includes:
 
@@ -67,6 +68,7 @@ python case-studies/02-mta-comparison/src/run.py
 python case-studies/03-incrementality/src/run.py
 python case-studies/04-media-mix-modeling/src/run.py
 python case-studies/05-web-attribution/src/run.py
+python case-studies/06-ai-mediated-measurement/src/run.py
 ```
 
 ## Intended audience
