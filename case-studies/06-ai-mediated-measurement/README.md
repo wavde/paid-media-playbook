@@ -96,6 +96,8 @@ Two runs produce byte-identical output. Known-answer tests are in
 
 1. **Synthetic, stylized data.** Each mechanism is isolated and switched on one at a time.
    Real campaigns combine all three, and the platform's model drifts during a test.
+   [Case 07](../07-criteo-uplift/) checks the targeting claims on real randomized data. Credit
+   inflation replicates, and marginal returns fall much faster than this simulation assumes.
 2. **Effect sizes are chosen, not estimated.** The break-even cost in the budget-transport
    test is placed halfway between true average and marginal uplift so the decision flips.
    With a different cost, the average-vs-marginal gap may or may not change the call. The

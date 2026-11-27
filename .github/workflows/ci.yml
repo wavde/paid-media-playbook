@@ -29,3 +29,7 @@ jobs:
         run: ruff check .
       - name: Test
         run: pytest -q
+      - name: Smoke-run evidence scripts
+        run: |
+          python case-studies/06-ai-mediated-measurement/src/run.py --smoke
+          python case-studies/07-criteo-uplift/src/run.py --smoke
