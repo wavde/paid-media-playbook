@@ -3,6 +3,7 @@
 **Method:** the [case 07](../07-criteo-uplift/) targeting checks, run on a second public
 randomized experiment from a different advertiser and channel, with cross-fitted models and
 bootstrap SEs.
+**Essay:** [It didn't replicate](https://github.com/wavde/wavde/blob/main/writing/uplift-targeting-replication-hillstrom.md)
 **Question:** *Case 07 found, on Criteo display ads, that the users a propensity model ranks
 highest are also the users the ad moves most, so propensity targeting captures most of the
 incremental outcomes. Does that hold for a retailer's e-mail campaign?*

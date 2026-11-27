@@ -7,6 +7,8 @@ platform-credited results and makes marginal returns fall below average returns.
 on real data where treatment was randomized, and how much does an uplift model add?*
 **Essay:** [The targeting model already knows who would convert](https://github.com/wavde/wavde/blob/main/writing/propensity-vs-uplift-targeting-criteo.md)
 
+> **Replication:** [case 08](../08-hillstrom-email-uplift/) repeats these checks on the randomized Hillstrom e-mail experiment. Credit inflation and falling marginal returns replicate, but the concentration of uplift in high-propensity users does not: the top 20% by propensity reach 25.9% of incremental visits there.
+
 ## TL;DR
 
 All numbers are from [`results.md`](results.md), computed on 6,988,166 held-out users. Every
