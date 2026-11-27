@@ -32,6 +32,8 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
+from paid_media.uplift import fit_logistic, predict, top_mask  # noqa: F401
+
 URL = (
     "https://huggingface.co/datasets/criteo/criteo-uplift/resolve/main/"
     "criteo-research-uplift-v2.1.csv.gz"
@@ -108,30 +110,8 @@ class Standardizer:
         return np.column_stack([np.ones(len(z)), z, z**2])
 
 
-def fit_logistic(
-    x: np.ndarray, y: np.ndarray, l2: float = 1e-4, max_iter: int = 25, tol: float = 1e-7
-) -> np.ndarray:
-    """Ridge-penalized logistic regression by Newton's method (IRLS).
-
-    ``l2`` is per observation, so the penalty is ``0.5 * l2 * n * ||b||^2``
-    (the intercept is penalized too, which is harmless at this sample size).
-    """
-    n, k = x.shape
-    b = np.zeros(k)
-    pen = l2 * n
-    for _ in range(max_iter):
-        p = 1.0 / (1.0 + np.exp(-np.clip(x @ b, -30, 30)))
-        w = p * (1 - p)
-        hess = (x * w[:, None]).T @ x + pen * np.eye(k)
-        step = np.linalg.solve(hess, x.T @ (y - p) - pen * b)
-        b += step
-        if np.max(np.abs(step)) < tol:
-            break
-    return b
 
 
-def predict(b: np.ndarray, x: np.ndarray) -> np.ndarray:
-    return 1.0 / (1.0 + np.exp(-np.clip(x @ b, -30, 30)))
 
 
 # -- evaluation ------------------------------------------------------------------
@@ -159,16 +139,6 @@ class TargetingRead:
     share_se: float
 
 
-def top_mask(score: np.ndarray, reach: float) -> np.ndarray:
-    if not 0 < reach <= 1:
-        raise ValueError("reach must be in (0, 1]")
-    k = int(round(reach * len(score)))
-    mask = np.zeros(len(score), dtype=bool)
-    if k == len(score):
-        mask[:] = True
-    elif k > 0:
-        mask[np.argpartition(-score, k - 1)[:k]] = True
-    return mask
 
 
 def _uplift(y: np.ndarray, t: np.ndarray) -> tuple[float, float]:

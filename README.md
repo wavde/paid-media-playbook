@@ -12,8 +12,9 @@ reviewers can regenerate data and verify that the method recovers the known
 ground truth) with a memo-style writeup covering the business framing, the
 method, the limitations, and a "when to use which" rule for the broader stack.
 
-Cases 00–06 use **synthetic** data. Case 07 uses the public Criteo uplift dataset, which
-comes from randomized incrementality tests. The framing is inspired by paid-media work on
+Cases 00–06 use **synthetic** data. Cases 07 and 08 use public randomized
+experiments: the Criteo uplift dataset (display advertising) and the Hillstrom
+e-mail experiment (retail e-mail). The framing is inspired by paid-media work on
 productivity-software advertising (SEM + display as the primary paid channels,
 trials and seat activations as the outcome), but no proprietary numbers,
 segments, or accounts are used.
@@ -30,6 +31,7 @@ segments, or accounts are used.
 | 05 | [Web attribution deep dive](case-studies/05-web-attribution/) | Session stitching, journey reconciliation, window sensitivity, iOS/ATT loss | Complete |
 | 06 | [Measurement when targeting, creative and pacing are model-driven](case-studies/06-ai-mediated-measurement/) | Ghost-ads vs platform credit, two-cell budget split, divergent delivery, lift-calibrated MMM | Complete |
 | 07 | [Propensity vs uplift targeting on real randomized data](case-studies/07-criteo-uplift/) | Criteo uplift dataset: credit inflation, marginal vs average return, T-learner vs propensity | Complete |
+| 08 | [Does it replicate? Propensity vs uplift on a randomized e-mail test](case-studies/08-hillstrom-email-uplift/) | Hillstrom e-mail experiment: the case 07 checks on a second advertiser and channel, cross-fitted | Complete |
 
 Each case includes:
 
@@ -72,6 +74,7 @@ python case-studies/04-media-mix-modeling/src/run.py
 python case-studies/05-web-attribution/src/run.py
 python case-studies/06-ai-mediated-measurement/src/run.py
 python case-studies/07-criteo-uplift/src/run.py   # downloads the public Criteo dataset (~300 MB)
+python case-studies/08-hillstrom-email-uplift/src/run.py   # downloads the Hillstrom CSV (~4 MB)
 ```
 
 ## Intended audience
