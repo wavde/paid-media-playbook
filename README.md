@@ -42,7 +42,6 @@ which" matrix; it makes the rest of the playbook easier to navigate.
 ## Stack
 
 - **numpy / scipy / pandas** as the default toolkit.
-- **statsmodels** and **scikit-learn** where they fit naturally.
 - **PyMC** for the Bayesian MMM in case 04 (optional — the MAP reference
   implementation runs without it).  Install with:
   `pip install -r requirements-mmm.txt`.
