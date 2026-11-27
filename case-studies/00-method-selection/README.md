@@ -12,6 +12,7 @@ wrong one produces an answer that looks precise and is systematically biased.
 | "Is this specific ad placement incremental?" | Conversion lift (ghost ad / PSA) | **03** |
 | "How should we allocate budget across channels at steady state?" | Media mix modeling | **04** |
 | "Is our measurement stack seeing what we think it's seeing?" | Session stitching + window sensitivity | **05** |
+| "Can we trust the platform's numbers when its algorithm picks audience, creative and pacing?" | Ghost-ads holdout, two-cell budget split, audience-randomized creative test, lift-calibrated MMM | **06** |
 
 ## The comparative view
 
