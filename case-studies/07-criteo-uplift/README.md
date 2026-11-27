@@ -5,6 +5,7 @@ uplift) on the public Criteo uplift dataset.
 **Question:** *Case 06's simulation says that targeting by conversion propensity inflates
 platform-credited results and makes marginal returns fall below average returns. Does that hold
 on real data where treatment was randomized, and how much does an uplift model add?*
+**Essay:** [The targeting model already knows who would convert](https://github.com/wavde/wavde/blob/main/writing/propensity-vs-uplift-targeting-criteo.md)
 
 ## TL;DR
 
