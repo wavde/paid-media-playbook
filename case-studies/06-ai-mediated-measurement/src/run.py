@@ -3,12 +3,15 @@
 Writes case-studies/06-ai-mediated-measurement/results.md. Every simulated
 number appears next to the true value the simulator knows by construction.
 
-Run:  python case-studies/06-ai-mediated-measurement/src/run.py
+Run:       python case-studies/06-ai-mediated-measurement/src/run.py
+CI smoke:  python case-studies/06-ai-mediated-measurement/src/run.py --smoke   (tiny, temp output)
 """
 
 from __future__ import annotations
 
+import argparse
 import sys
+import tempfile
 from pathlib import Path
 
 _HERE = Path(__file__).resolve()
@@ -212,6 +215,15 @@ def part_c(rng: np.random.Generator) -> list[str]:
 
 
 def main() -> None:
+    global OUT, N_USERS, REPS_A, N_REFERENCE, N_SPLIT, REPS_SPLIT, N_CREATIVE, REPS_B, REPS_C
+    parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
+    parser.add_argument("--smoke", action="store_true",
+                        help="tiny sizes, output to a temp dir (for CI)")
+    if parser.parse_args().smoke:
+        N_USERS, REPS_A, N_REFERENCE, N_SPLIT, REPS_SPLIT = 20_000, 2, 50_000, 50_000, 2
+        N_CREATIVE, REPS_B, REPS_C = 20_000, 2, 3
+        OUT = Path(tempfile.mkdtemp()) / "results.md"
+
     seeds = np.random.SeedSequence(SEED).spawn(4)
     a_lines = part_a(np.random.default_rng(seeds[0]))
     ref_lines, dec_lines, cost = part_a2(np.random.default_rng(seeds[1]))
