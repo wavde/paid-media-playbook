@@ -6,6 +6,8 @@ creative tests, and MMM calibrated with a lift test.
 see and how fast budget is spent (Advantage+ / Performance Max style), what can platform
 reports, lift tests and MMM each tell you, and which decision does each support?*
 
+**Essay:** [Measuring marketing when the algorithm runs the campaign](https://github.com/wavde/wavde/blob/main/writing/ai-mediated-marketing-measurement.md)
+
 ## TL;DR
 
 On synthetic data where the truth is known by construction (all numbers from
